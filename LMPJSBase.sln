@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "LMPJSBase", "LMPJSBase\LMPJSBase.njsproj", "{5A9D88A7-D3DA-4EC5-8CB9-FDFDE450EEE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A9D88A7-D3DA-4EC5-8CB9-FDFDE450EEE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A9D88A7-D3DA-4EC5-8CB9-FDFDE450EEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A9D88A7-D3DA-4EC5-8CB9-FDFDE450EEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A9D88A7-D3DA-4EC5-8CB9-FDFDE450EEE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F93C57D-D569-402E-9483-A1B71CC2D952}
+	EndGlobalSection
+EndGlobal
