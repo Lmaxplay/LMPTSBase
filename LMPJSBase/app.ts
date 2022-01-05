@@ -7,16 +7,21 @@ import * as chalk from 'chalk';
 import * as child_processes from 'node:child_process';
 import * as readlineModule from 'node:readline';
 
-const readline = readlineModule.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+import Logger from './Modules/logger.js';
+import { LogLevel } from './Modules/logger.js';
 
-const color = new chalk.Chalk();
+const colors = new chalk.Chalk();
+
+const logging = new Logger(process.stdout, process.stdin);
 
 // Start of actual code
 
-console.log(color.greenBright("Hello world!"));
+logging.info("Hello world");
+logging.log("Hello world");
+logging.warn("Hello world");
+logging.error("Hello world");
+logging.log(LogLevel.INFO, "Hello");
 
-console.log("ok?");
-console.log(process.geteuid());
+
+// End Application
+process.exit(1);
