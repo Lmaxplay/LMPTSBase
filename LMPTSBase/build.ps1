@@ -3,7 +3,7 @@ param(
     [Parameter(Mandatory=$False)][System.String]$file="",
     [Parameter(Mandatory=$False)][System.String]$tsconfig=""
 )
-Write-Output 'Lmaxplay TS-Run v1.0, all rights reserved'
+Write-Output 'Lmaxplay TS-Run v1.0, all rights reserved, Licensed under the MIT License'
 if ($tsskip) {
     Write-Output 'Skipping TypeScript compile due to arguments'
 } else {
