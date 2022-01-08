@@ -1,4 +1,6 @@
 import * as chalk from 'chalk';
+import { time } from 'node:console';
+import * as readline from 'node:readline';
 
 const colors = new chalk.Chalk();
 
@@ -13,8 +15,12 @@ export enum LogLevel {
  * Logger class, contains everything you need to log stuff to the console!
  */
 export default class Logger {
-    output: NodeJS.WriteStream = process.stdout;
-    input: NodeJS.ReadStream = process.stdin;
+    public output: NodeJS.WriteStream = process.stdout;
+    public input: NodeJS.ReadStream = process.stdin;
+    public readline: readline.Interface = readline.createInterface(this.input);
+
+    // TODO ADD DOCS
+
     public infoTemplate: string = colors.white("[{date}] ") + colors.white("[Info] ") + colors.white("{message}") + "\n";
     public logTemplate: string = colors.white("[{date}] ") + colors.green("[Log] ") + colors.green("{message}") + "\n";
     public warnTemplate: string = colors.white("[{date}] ") + colors.yellow("[WARN] ") + colors.yellow("{message}") + "\n";
@@ -25,9 +31,10 @@ export default class Logger {
      * @param output the output (infoging) handle, uses a NodeJS.WriteStream
      * @param input the input (getting messages) handle, uses a NodeJS.ReadStream
      */
-    constructor (output: NodeJS.WriteStream = process.stdout, input: NodeJS.ReadStream = process.stdin) {
+    constructor(output: NodeJS.WriteStream = process.stdout, input: NodeJS.ReadStream = process.stdin) {
         this.output = output;
         this.input = input;
+        this.readline = readline.createInterface(this.input);
         return this;
     }
 
@@ -134,6 +141,15 @@ export default class Logger {
         } else if (level === LogLevel.ERROR) {
             this.error(message);
         }
+    }
+
+    in(message: string, after: (message) => void): void {
+        this.log("DO");
+        var output: string | null = null;
+        this.readline.question(message, (answer) => {
+            after(answer);
+            this.readline.close();
+        });
     }
 
 }

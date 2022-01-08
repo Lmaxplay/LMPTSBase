@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "LMPJSBase", "LMPJSBase\LMPJSBase.njsproj", "{5A9D88A7-D3DA-4EC5-8CB9-FDFDE450EEE6}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "LMPTSBase", "LMPTSBase\LMPTSBase.njsproj", "{5A9D88A7-D3DA-4EC5-8CB9-FDFDE450EEE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
