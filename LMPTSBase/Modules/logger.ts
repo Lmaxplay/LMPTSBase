@@ -1,5 +1,6 @@
 import * as chalk from 'chalk';
 import { time } from 'node:console';
+import * as readlineSync from 'readline-sync';
 import * as readline from 'node:readline';
 
 const colors = new chalk.Chalk();
@@ -17,7 +18,6 @@ export enum LogLevel {
 export default class Logger {
     public output: NodeJS.WriteStream = process.stdout;
     public input: NodeJS.ReadStream = process.stdin;
-    public readline: readline.Interface = readline.createInterface(this.input);
 
     // TODO ADD DOCS
 
@@ -25,6 +25,7 @@ export default class Logger {
     public logTemplate: string = colors.white("[{date}] ") + colors.green("[Log] ") + colors.green("{message}") + "\n";
     public warnTemplate: string = colors.white("[{date}] ") + colors.yellow("[WARN] ") + colors.yellow("{message}") + "\n";
     public errorTemplate: string = colors.white("[{date}] ") + colors.red("[ERROR] ") + colors.red("{message}") + "\n";
+    public inputTemplate: string = /*colors.white("[{date}] ") + */colors.white("[Input] ");
 
     /**
      * Creates a new logger
@@ -34,7 +35,6 @@ export default class Logger {
     constructor(output: NodeJS.WriteStream = process.stdout, input: NodeJS.ReadStream = process.stdin) {
         this.output = output;
         this.input = input;
-        this.readline = readline.createInterface(this.input);
         return this;
     }
 
@@ -143,13 +143,19 @@ export default class Logger {
         }
     }
 
-    in(message: string, after: (message) => void): void {
-        this.log("DO");
-        var output: string | null = null;
-        this.readline.question(message, (answer) => {
-            after(answer);
-            this.readline.close();
-        });
+    /**
+     * Gets input from the console
+     * @param message the message to include
+     * @param includetemplate use template or just the message?
+     * @returns console input
+     */
+    in(message: string, includetemplate: boolean = true): string {
+        var date = new Date();
+        if(includetemplate && message.length === 0) {
+            return readlineSync.question(this.inputTemplate.replaceAll("{message}", message).replaceAll("{date}", date.toTimeString().split(" ")[0]));
+        } else {
+            return readlineSync.question(message);
+        }
     }
 
 }

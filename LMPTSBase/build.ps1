@@ -2,11 +2,16 @@ param(
     [Parameter(Mandatory=$False)][System.Boolean][System.Int32]$tsskip=0, # skips typescript compilation if set to anything but 0
     [Parameter(Mandatory=$False)][System.String]$file="", # file to run with node
     [Parameter(Mandatory=$False)][System.String]$tsconfig="", # tsconfig.json location
-    [Parameter(Mandatory=$False)][System.Boolean][System.Int32]$strict=0 # enable --strict compiler option?
+    [Parameter(Mandatory=$False)][System.Boolean][System.Int32]$strict=0, # enable --strict compiler option?
+    [Parameter(Mandatory=$False)][System.Boolean][System.Int32]$s=0
 )
 
-Write-Output 'Lmaxplay TS-Node build script v1.0, all rights reserved, Licensed under the MIT License' # TODO Update this bit to be more informative
+try {
 
+$PreviousColor = $Host.UI.RawUI.ForegroundColor # Store previous foreground color, so we can restore it
+$Host.UI.RawUI.ForegroundColor = 'Green'
+Write-Output 'Lmaxplay TS-Node build script v1.0.2' 'Licensed under the MIT License' 'Copyright 2022 Lmaxplay' # TODO Update this bit to be more informative
+$Host.UI.RawUI.ForegroundColor = $PreviousColor # Restore the previous foreground color
 # TypeScript compilation
 if ($tsskip) {
     Write-Output 'Skipping TypeScript compiler due to arguments'
@@ -16,22 +21,28 @@ if ($tsskip) {
         $tsconfig = "tsconfig.json"
     }
     if($strict) {
-        $strictstring = '--strict';
+        $strictstring = '--strict'; # Is strict, so add strict to the arguments
     } else {
-        $strictstring = '';
+        $strictstring = ''; # Don't enable strict mode, thus leave it empty
     }
 
-    tsc -p "$tsconfig" $strictstring --allowJs # Run TypeScript compile
+    tsc -p "$tsconfig" $strictstring # Run TypeScript compile
     Write-Output 'TypeScript compile complete'
 }
 
 # Setting up the filepath
-if($file -eq "") {
+if($file -eq "" -or $file -eq "default") {
     $appstring = 'app.js';
 } else {
     $appstring = $file
 }
 
-# Actually running NodeJS
-Write-Output "Running node application using js file $file";
+# Actually running node.js
+Write-Output "Running js file $file using node.js";
 node "$appstring"
+Write-Output "node.js exited with code $LastExitCode" # Print exit code
+
+
+} catch {
+    Write-Output "An error occured" "$Error"
+}

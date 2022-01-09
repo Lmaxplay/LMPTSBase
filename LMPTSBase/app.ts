@@ -5,18 +5,21 @@ import * as path from 'node:path';
 import * as fs from 'node:fs';
 import * as chalk from 'chalk';
 import * as child_processes from 'node:child_process';
-import * as readlineModule from 'node:readline';
+import * as readlineSync from 'readline-sync';
 import * as marked from 'marked';
-import * as Seven from 'node-7z';
 
 import Logger from './Modules/logger.js';
 import { LogLevel } from './Modules/logger.js';
+import * as readline from 'node:readline';
 
 const colors = new chalk.Chalk();
 
 const logging = new Logger(process.stdout, process.stdin);
 
 // Start of actual code
+var name = logging.in("Hi, what is ur name? ", false);
+
+logging.log(`Hello ${name}!`);
 
 // End Application
 
