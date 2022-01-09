@@ -10,8 +10,9 @@ import * as marked from 'marked';
 
 import Logger from './Modules/logger.js';
 import { LogLevel } from './Modules/logger.js';
-import * as readline from 'node:readline';
-import { MessageChannel } from 'node:worker_threads';
+import runPython from './Modules/python.js';
+import { stdin } from 'node:process';
+
 
 const colors = new chalk.Chalk();
 
@@ -19,14 +20,10 @@ const logging = new Logger(process.stdout, process.stdin);
 
 // Start of actual code
 
-/*var name = logging.in("Hi, what is ur name? ", false);
+var name = logging.in("Hi, what is ur name? ", false);
 
-logging.log(`Hello ${name}!`);*/
-
-var child = child_processes.exec("py -3.10 app.py", (error, stdout, stderr) => {
-    logging.log(stdout);
-});
+logging.log(`Hello ${name}!`);
 
 // End Application
 
-// process.exit(0);
+process.exit(0);
