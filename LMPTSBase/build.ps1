@@ -21,7 +21,7 @@ if ($tsskip) {
         $tsconfig = "tsconfig.json"
     }
     if($strict) {
-        $strictstring = '--strict'; # Is strict, so add strict to the arguments
+        $strictstring = '--strict'; # Enable strict mode, so add --strict to the arguments
     } else {
         $strictstring = ''; # Don't enable strict mode, thus leave it empty
     }
