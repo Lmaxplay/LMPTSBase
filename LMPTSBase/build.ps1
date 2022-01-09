@@ -1,9 +1,9 @@
 param(
-    [Parameter(Mandatory=$False)][System.Boolean][System.Int32]$tsskip=0, # skips typescript compilation if set to anything but 0
+    [Parameter(Mandatory=$False)][System.Boolean]$tsskip=0, # skips typescript compilation if set to anything but 0
     [Parameter(Mandatory=$False)][System.String]$file="", # file to run with node
     [Parameter(Mandatory=$False)][System.String]$tsconfig="", # tsconfig.json location
-    [Parameter(Mandatory=$False)][System.Boolean][System.Int32]$strict=0, # enable --strict compiler option?
-    [Parameter(Mandatory=$False)][System.Boolean][System.Int32]$s=0
+    [Parameter(Mandatory=$False)][System.Boolean]$strict=0, # enable --strict compiler option?
+    [Parameter(Mandatory=$False)][System.Boolean]$s=0
 )
 
 try {
@@ -12,6 +12,7 @@ $PreviousColor = $Host.UI.RawUI.ForegroundColor # Store previous foreground colo
 $Host.UI.RawUI.ForegroundColor = 'Green'
 Write-Output 'Lmaxplay TS-Node build script v1.0.2' 'Licensed under the MIT License' 'Copyright 2022 Lmaxplay' # TODO Update this bit to be more informative
 $Host.UI.RawUI.ForegroundColor = $PreviousColor # Restore the previous foreground color
+
 # TypeScript compilation
 if ($tsskip) {
     Write-Output 'Skipping TypeScript compiler due to arguments'
@@ -38,7 +39,7 @@ if($file -eq "" -or $file -eq "default") {
 }
 
 # Actually running node.js
-Write-Output "Running js file $file using node.js";
+Write-Output "Running js file $appstring using node.js" "";
 node "$appstring"
 Write-Output "node.js exited with code $LastExitCode" # Print exit code
 

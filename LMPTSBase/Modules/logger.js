@@ -33,7 +33,7 @@ export default class Logger {
     info(param1, param2) {
         if (param2 === undefined && typeof param1 == 'string') {
             var date = new Date();
-            this.output.write(this.infoTemplate.replaceAll("{message}", param1).replaceAll("{date}", date.toTimeString().split(" ")[0]));
+            this.output.write(this.infoTemplate.replaceAll("{date}", date.toTimeString().split(" ")[0]).replaceAll("{message}", param1));
         }
         else if (typeof param1 === 'number' && typeof param2 === 'string') {
             this.level(param1, param2);
@@ -43,7 +43,7 @@ export default class Logger {
     log(param1, param2) {
         if (param2 === undefined && typeof param1 == 'string') {
             var date = new Date();
-            this.output.write(this.logTemplate.replaceAll("{message}", param1).replaceAll("{date}", date.toTimeString().split(" ")[0]));
+            this.output.write(this.logTemplate.replaceAll("{date}", date.toTimeString().split(" ")[0]).replaceAll("{message}", param1));
         }
         else if (typeof param1 === 'number' && typeof param2 === 'string') {
             this.level(param1, param2);
@@ -53,7 +53,7 @@ export default class Logger {
     warn(param1, param2) {
         if (param2 === undefined && typeof param1 == 'string') {
             var date = new Date();
-            this.output.write(this.warnTemplate.replaceAll("{message}", param1).replaceAll("{date}", date.toTimeString().split(" ")[0]));
+            this.output.write(this.warnTemplate.replaceAll("{date}", date.toTimeString().split(" ")[0]).replaceAll("{message}", param1));
         }
         else if (typeof param1 === 'number' && typeof param2 === 'string') {
             this.level(param1, param2);
@@ -63,7 +63,7 @@ export default class Logger {
     error(param1, param2) {
         if (param2 === undefined && typeof param1 == 'string') {
             var date = new Date();
-            this.output.write(this.errorTemplate.replaceAll("{message}", param1).replaceAll("{date}", date.toTimeString().split(" ")[0]));
+            this.output.write(this.errorTemplate.replaceAll("{date}", date.toTimeString().split(" ")[0]).replaceAll("{message}", param1));
         }
         else if (typeof param1 === 'number' && typeof param2 === 'string') {
             this.level(param1, param2);
