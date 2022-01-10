@@ -17,6 +17,7 @@ $Host.UI.RawUI.ForegroundColor = $PreviousColor # Restore the previous foregroun
 if ($tsskip) {
     Write-Output 'Skipping TypeScript compiler due to arguments'
 } else {
+    $sw = [Diagnostics.Stopwatch]::StartNew()
     Write-Output 'Running TypeScript compiler tsc'
     if ($tsconfig -eq "") {
         $tsconfig = "tsconfig.json"
@@ -27,8 +28,9 @@ if ($tsskip) {
         $strictstring = ''; # Don't enable strict mode, thus leave it empty
     }
 
-    tsc -p "$tsconfig" $strictstring # Run TypeScript compile
-    Write-Output 'TypeScript compile complete'
+    $tsctime = Measure-Command {tsc -p "$tsconfig" $strictstring | Out-Default} # Run TypeScript compile
+    $tsctimes = $tsctime.Seconds.ToString() + "." + $tsctime.Milliseconds.ToString()
+    Write-Output 'TypeScript compile complete' "Compile took $tsctimes seconds"
 }
 
 # Setting up the filepath
@@ -42,7 +44,6 @@ if($file -eq "" -or $file -eq "default") {
 Write-Output "Running js file $appstring using node.js" "";
 node "$appstring"
 Write-Output "node.js exited with code $LastExitCode" # Print exit code
-
 
 } catch {
     Write-Output "An error occured" "$Error"
