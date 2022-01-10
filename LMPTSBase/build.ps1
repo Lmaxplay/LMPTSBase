@@ -35,14 +35,14 @@ if ($tsskip) {
 
 # Setting up the filepath
 if($file -eq "" -or $file -eq "default") {
-    $appstring = 'app.js';
+    $appstring = 'app.js' # can't use $app due to naming reasons
 } else {
-    $appstring = $file
+    $appstring = $file # can't use $app due to naming reasons
 }
 
 # Actually running node.js
 Write-Output "Running js file $appstring using node.js" "";
-node "$appstring"
+node "$appstring" # $appstring is the file path to the javascript file, can't use $app due to naming reasons
 Write-Output "node.js exited with code $LastExitCode" # Print exit code
 
 } catch {
