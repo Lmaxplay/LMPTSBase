@@ -2,8 +2,7 @@ param(
     [Parameter(Mandatory=$False)][System.Boolean]$tsskip=0, # skips typescript compilation if set to anything but 0
     [Parameter(Mandatory=$False)][System.String]$file="", # file to run with node
     [Parameter(Mandatory=$False)][System.String]$tsconfig="", # tsconfig.json location
-    [Parameter(Mandatory=$False)][System.Boolean]$strict=0, # enable --strict compiler option?
-    [Parameter(Mandatory=$False)][System.Boolean]$s=0
+    [Parameter(Mandatory=$False)][System.Boolean]$strict=0 # enable --strict compiler option?
 )
 
 try {
@@ -17,7 +16,6 @@ $Host.UI.RawUI.ForegroundColor = $PreviousColor # Restore the previous foregroun
 if ($tsskip) {
     Write-Output 'Skipping TypeScript compiler due to arguments'
 } else {
-    $sw = [Diagnostics.Stopwatch]::StartNew()
     Write-Output 'Running TypeScript compiler tsc'
     if ($tsconfig -eq "") {
         $tsconfig = "tsconfig.json"

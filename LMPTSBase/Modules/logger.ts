@@ -29,7 +29,7 @@ export default class Logger {
 
     /**
      * Creates a new logger
-     * @param output the output (infoging) handle, uses a NodeJS.WriteStream
+     * @param output the output (writing to something) handle, uses a NodeJS.WriteStream
      * @param input the input (getting messages) handle, uses a NodeJS.ReadStream
      */
     constructor(output: NodeJS.WriteStream = process.stdout, input: NodeJS.ReadStream = process.stdin) {
