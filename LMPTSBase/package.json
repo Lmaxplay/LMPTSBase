@@ -21,7 +21,7 @@
     "@gerhobbelt/markdown-it-emoji": "^2.0.0-12",
     "@types/async": "^3.2.12",
     "@types/express": "^4.17.13",
-    "@types/marked": "^4.0.1",
+    "@types/marked": "^4.0.3",
     "@types/node-7z": "^2.1.4",
     "@types/readline-sync": "^1.4.4",
     "async": "^3.2.2",
